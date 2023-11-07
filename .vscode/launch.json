@@ -211,7 +211,7 @@
             "stopAtEntry": false
         },
 
-        {
+        {  
             "name": "Foundation 2 (Products)",
             "type": "coreclr",
             "request": "launch",
