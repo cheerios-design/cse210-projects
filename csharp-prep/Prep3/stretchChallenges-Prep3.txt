@@ -1,0 +1,13 @@
+Keep track of how many guesses the user has made and inform them of it at the end of the game.
+
+After the game is over, ask the user if they want to play again. Then, 
+loop back and play the whole game again and continue this loop as long as they keep saying "yes".
+
+
+//lOG 
+In this version:
+
+The PlayGuessMyNumberGame method encapsulates the logic for playing the game.
+The number of guesses is tracked with the numberOfGuesses variable.
+After the game is over, the program asks the user if they want to play again. 
+If the answer is "yes," it goes back to the beginning of the loop; otherwise, it exits the program.
