@@ -1,0 +1,18 @@
+In the MemoMind project, I tried to keep things straightforward while adding a few touches to 
+make it more interesting:
+
+Easy-to-Understand Design: I organized the code into classes like Entry, 
+PromptJournal, and MemoMindApp. This makes it easier to follow, and each part of the program has its job.
+
+Random Prompts: Instead of always using the same questions, I added a feature to pick a random prompt 
+from a list. This small touch adds variety and makes the daily entries more engaging.
+
+Simple Menu System: The program has a menu that shows options like writing a new entry or displaying the journal. 
+This menu makes it clear what the program can do, especially for someone new to it.
+
+Handle Mistakes Gracefully: I made sure the program doesn't break easily. 
+If something unexpected happens (like loading a file that doesn't exist), the program won't crash but will let you know what went wrong.
+
+Comments for Help: I added comments in the code to explain what each part does. 
+If you or someone else reads the code later, these comments can be like little notes to help understand 
+things better.
