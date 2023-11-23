@@ -26,9 +26,6 @@ class Reference
 
     public Reference(string reference)
     {
-        // Parse reference string into book, chapter, and verse components
-        // You may need to enhance this based on your specific use cases
-        // For simplicity, assuming the reference is always in the format "Book Chapter:StartVerse-EndVerse"
         string[] parts = reference.Split(' ');
         Book = parts[0];
         string[] chapterVerse = parts[1].Split(':');
@@ -55,50 +52,47 @@ class Scripture
 {
     private readonly Reference reference;
     private readonly Word[,] words;
+    private int totalWords;
+    private int wordsHidden;
 
-public Scripture(string reference, string text)
+    public int Progress => wordsHidden * 100 / totalWords;
+
+    public Scripture(string reference, string text)
     {
         this.reference = new Reference(reference);
         string[] textWords = text.Split(' ');
-        words = new Word[this.reference.EndVerse - this.reference.StartVerse + 1, textWords.Length];
+        totalWords = textWords.Length;
+        words = new Word[this.reference.EndVerse - this.reference.StartVerse + 1, totalWords];
 
         int verseIndex = 0;
-        for (int i = 0; i < textWords.Length; i++)
+        for (int i = 0; i < totalWords; i++)
         {
             words[verseIndex, i] = new Word(textWords[i]);
 
-            // Move to the next verse if needed
-            if (i == textWords.Length - 1 && verseIndex < words.GetLength(0) - 1)
+            if (i == totalWords - 1 && verseIndex < words.GetLength(0) - 1)
             {
-                i = -1; // Reset i
+                i = -1; 
                 verseIndex++;
             }
         }
     }
 
     public void Display()
-{
-    try
     {
         Console.Clear();
-    }
-    catch (System.IO.IOException)
-    {
-        // Ignore the exception if clearing the console fails.
-    }
+        Console.WriteLine(reference.ToString());
 
-    Console.WriteLine(reference.ToString());
-
-    for (int i = 0; i < words.GetLength(0); i++)
-    {
-        for (int j = 0; j < words.GetLength(1); j++)
+        for (int i = 0; i < words.GetLength(0); i++)
         {
-            Console.Write(words[i, j].Display() + " ");
+            for (int j = 0; j < words.GetLength(1); j++)
+            {
+                Console.Write(words[i, j].Display() + " ");
+            }
+            Console.WriteLine();
         }
-        Console.WriteLine();
-    }
-}
 
+        DisplayProgress();
+    }
 
     public void HideRandomWords()
     {
@@ -108,9 +102,10 @@ public Scripture(string reference, string text)
         {
             for (int j = 0; j < words.GetLength(1); j++)
             {
-                if (random.Next(2) == 0) // 50% chance of hiding the word
+                if (random.Next(2) == 0 && !words[i, j].IsHidden)
                 {
                     words[i, j].IsHidden = true;
+                    wordsHidden++;
                 }
             }
         }
@@ -118,14 +113,12 @@ public Scripture(string reference, string text)
 
     public bool AreAllWordsHidden()
     {
-        foreach (var word in words)
-        {
-            if (!word.IsHidden)
-            {
-                return false;
-            }
-        }
-        return true;
+        return wordsHidden == totalWords;
+    }
+
+    private void DisplayProgress()
+    {
+        Console.WriteLine($"Progress: {Progress}% complete\n");
     }
 }
 
