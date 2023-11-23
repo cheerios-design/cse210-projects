@@ -84,7 +84,7 @@ public Scripture(string reference, string text)
     }
     catch (System.IO.IOException)
     {
-        // Ignore the exception if clearing the console fails
+        // Ignore the exception if clearing the console fails.
     }
 
     Console.WriteLine(reference.ToString());
