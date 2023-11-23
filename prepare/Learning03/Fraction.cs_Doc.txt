@@ -1,0 +1,36 @@
+File: Fraction.cs
+
+Description:
+    The Fraction class represents a mathematical fraction with integer numerator and denominator.
+    It includes constructors for various initialization scenarios, getters and setters for numerator
+    and denominator, and methods to retrieve the fraction as a string and its decimal representation.
+
+Class: Fraction
+
+Attributes:
+    - private int _top: Represents the numerator of the fraction.
+    - private int _bottom: Represents the denominator of the fraction.
+
+Constructors:
+    - public Fraction(): Default constructor that initializes the fraction to 1/1.
+    - public Fraction(int top): Constructor with one parameter for the numerator, initializes the denominator to 1.
+    - public Fraction(int top, int bottom): Constructor with two parameters for the numerator and denominator.
+
+Properties:
+    - public int Top: Property for accessing and modifying the numerator.
+    - public int Bottom: Property for accessing and modifying the denominator.
+
+Methods:
+    - public string GetFractionString(): Returns the fraction in the form "numerator/denominator".
+    - public double GetDecimalValue(): Returns the decimal representation of the fraction.
+
+Example Usage:
+    Fraction fraction1 = new Fraction();           // Initializes to 1/1
+    Fraction fraction2 = new Fraction(5);          // Initializes to 5/1
+    Fraction fraction3 = new Fraction(3, 4);       // Initializes to 3/4
+
+    fraction1.Top = 3;                             // Sets the numerator to 3
+    fraction1.Bottom = 5;                          // Sets the denominator to 5
+
+    Console.WriteLine(fraction1.GetFractionString()); // Output: "3/5"
+    Console.WriteLine(fraction1.GetDecimalValue());   // Output: 0.6
