@@ -1,0 +1,81 @@
+================================================================================
+                         ACTIVITY TRACKER PROGRAM DOCUMENTATION
+================================================================================
+
+1. INTRODUCTION
+   - The Activity Tracker program is designed to manage different types of activities such as running, cycling, and swimming.
+   - It utilizes inheritance, polymorphism, and encapsulation principles to organize and share common attributes and methods.
+
+2. CLASS HIERARCHY
+   - **Activity** (Base Class)
+      - Attributes:
+         - `durationMinutes` (private int): The duration of the activity in minutes.
+         - `distance` (private double): The distance covered during the activity in kilometers.
+      - Methods:
+         - `GetDistance()`: Virtual method to get the distance.
+         - `GetSpeed()`: Virtual method to calculate the speed.
+         - `GetPace()`: Virtual method to calculate the pace.
+         - `GetDuration()`: Method to get the duration of the activity.
+         - `GetSummary()`: Virtual method to generate a summary of the activity.
+
+   - **Running** (Derived from Activity)
+      - Additional Attribute:
+         - `shoeMileage` (private double): The mileage of the running shoes.
+      - Methods:
+         - `GetDistance()`: Overrides base method to convert distance from km to miles.
+         - `GetPace()`: Overrides base method to convert pace from min/km to min/mile.
+         - `GetSummary()`: Overrides base method to include shoe mileage in the summary.
+
+   - **Cycling** (Derived from Activity)
+      - Additional Attribute:
+         - `terrain` (private string): The type of terrain (e.g., Mountain, Road).
+      - Methods:
+         - `GetSummary()`: Overrides base method to include terrain in the summary.
+
+   - **Swimming** (Derived from Activity)
+      - Additional Attribute:
+         - `laps` (private int): The number of laps swum.
+      - Methods:
+         - `GetDistance()`: Overrides base method to convert laps to distance in km.
+         - `GetSummary()`: Overrides base method to include laps in the summary.
+
+3. MAIN PROGRAM (Program class)
+   - Creates instances of Running, Cycling, and Swimming activities.
+   - Adds them to a list of type Activity.
+   - Iterates through the list and calls the `GetSummary` method for each activity, displaying the results.
+
+4. RUNNING THE PROGRAM
+   - Compile and run the program to see the summary information for each activity type.
+
+================================================================================
+                            CLASS DIAGRAM
+================================================================================
+
+    +-------------------+
+    |     Activity      |
+    +-------------------+
+    | - durationMinutes : int    |
+    | - distance : double        |
+    +---------------------------+
+    | + GetDistance() : double   |
+    | + GetSpeed() : double      |
+    | + GetPace() : double       |
+    | + GetDuration() : int      |
+    | + GetSummary() : string    |
+    +---------------------------+
+            ^       ^       ^
+            |       |       |
+     +------|-------|-------|------+
+     |      |       |       |      |
+     |      v       v       v      |
++-----------+  +-----------+  +-----------+
+|  Running  |  |  Cycling  |  | Swimming  |
++-----------+  +-----------+  +-----------+
+| - shoeMileage : double      | - terrain : string       |
++-----------------------------+-------------------------+
+| + GetDistance() : double    | + GetSummary() : string  |
+| + GetPace() : double        |                          |
+| + GetSummary() : string      |                         |
++-----------------------------+-------------------------+
+
+================================================================================

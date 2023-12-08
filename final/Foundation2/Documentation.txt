@@ -1,0 +1,120 @@
+
+=======================================================================
+                  Order Management System Documentation
+=======================================================================
+
+Introduction
+The Order Management System is a C# program designed to manage orders for a company. 
+It includes classes for Product, Customer, Address, and Order. These classes collaborate to handle 
+product information, customer details, shipping addresses, and order processing.
+
+Classes
+1. Product
+Represents a product with properties such as name, product ID, price, and quantity.
+
+Properties:
+Name: Name of the product.
+ProductId: Unique identifier for the product.
+Methods:
+GetTotalPrice(): Calculates the total price of the product based on its price and quantity.
+
+2. Customer
+Represents a customer with a name and an associated address.
+
+Properties:
+
+Name: Name of the customer.
+Methods:
+
+IsInUSA(): Determines whether the customer's address is in the USA.
+GetAddressString(): Returns a string representation of the customer's address.
+
+3. Address
+Represents a physical address with street address, city, state/province, and country.
+
+Methods:
+IsInUSA(): Determines whether the address is in the USA.
+ToString(): Returns a formatted string with all address fields.
+
+4. Order
+Represents an order with a list of products and an associated customer.
+
+Properties:
+
+Products: List of products in the order.
+Customer: Customer associated with the order.
+Methods:
+
+AddProduct(Product product): Adds a product to the order.
+GetTotalPrice(): Calculates the total price of the order, including shipping costs.
+GetPackingLabel(): Returns a string with the packing label, listing product names and IDs.
+GetShippingLabel(): Returns a string with the shipping label, including customer name and address.
+Usage Example
+The program creates two orders, each with a set of products and customers. 
+It then displays information about each order, including packing labels, shipping labels, and total prices.
+
+// Example Usage
+Product product1 = new Product("Laptop", "P001", 1200.00, 2);
+Product product2 = new Product("Headphones", "P002", 150.00, 3);
+Product product3 = new Product("Mouse", "P003", 30.00, 5);
+
+Customer customer1 = new Customer("John Doe", new Address("123 Main St", "Cityville", "CA", "USA"));
+Customer customer2 = new Customer("Jane Smith", new Address("456 Oak St", "Townsville", "ON", "Canada"));
+
+Order order1 = new Order(customer1);
+order1.AddProduct(product1);
+order1.AddProduct(product2);
+
+Order order2 = new Order(customer2);
+order2.AddProduct(product2);
+order2.AddProduct(product3);
+
+// Display results
+Console.WriteLine("Order 1 Packing Label:");
+Console.WriteLine(order1.GetPackingLabel());
+
+Console.WriteLine("\nOrder 1 Shipping Label:");
+Console.WriteLine(order1.GetShippingLabel());
+
+Console.WriteLine("\nOrder 1 Total Price: $" + order1.GetTotalPrice());
+
+Console.WriteLine("\nOrder 2 Packing Label:");
+Console.WriteLine(order2.GetPackingLabel());
+
+Console.WriteLine("\nOrder 2 Shipping Label:");
+Console.WriteLine(order2.GetShippingLabel());
+
+Console.WriteLine("\nOrder 2 Total Price: $" + order2.GetTotalPrice());
+
+The Order Management System provides a basic structure for managing orders, products, customers, and addresses. 
+It demonstrates the use of encapsulation and object-oriented principles in C# to create a modular and 
+maintainable system. Users can extend and modify the system to meet specific business requirements.
+
++-----------------+        +-----------------+      +-----------------+
+|      Product    |        |      Customer   |      |      Address    |
++-----------------+        +-----------------+      +-----------------+
+| - name: string   |        | - name: string   |      | - streetAddress: string  |
+| - productId: string|        | - address: Address|      | - city: string        |
+| - price: double   |        +-----------------+      | - state: string          |
+| - quantity: int   |        | +IsInUSA(): bool  |      | - country: string      |
+| +GetTotalPrice(): double |  | +GetAddressString(): string| +IsInUSA(): bool    |
++-----------------+        +-----------------+      | +ToString(): string        |
+        |                                               +------------------------+
+        |
+        |           +-----------------+
+        +---------->|      Order      |
+                    +-----------------+
+                    | - products: List<Product>         |
+                    | - customer: Customer              |
+                    | +AddProduct(Product product): void|
+                    | +GetTotalPrice(): double          |
+                    | +GetPackingLabel(): string        |
+                    | +GetShippingLabel(): string       |
+                    +-----------------------------------+
+
+
+Product, Customer, and Address are the base classes.
+Customer has a composition relationship with Address.
+Order is a class that aggregates Product and Customer.
+Order uses the encapsulated functionality of its composed objects to calculate the total price and generate labels.
+Arrows indicate inheritance (solid line) or composition (diamond arrow).

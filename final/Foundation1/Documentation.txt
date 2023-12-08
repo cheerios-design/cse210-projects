@@ -1,0 +1,124 @@
+=======================================================================
+                  Video and Comment Management Program
+=======================================================================
+
+1. Introduction:
+
+   This C# program demonstrates a simple implementation of a video and comment
+   management system using abstraction. The program defines two abstract classes,
+   `Comment` and `Video`, along with concrete implementations for handling text
+   comments and videos with text comments.
+
+2. Classes:
+
+   a. `Comment` (Abstract Class):
+      - Properties:
+        - `CommenterName`: Represents the name of the person who made the comment.
+        - `CommentText`: Represents the text content of the comment.
+      - Constructor:
+        - Initializes the `CommenterName` and `CommentText` properties.
+      - Abstract Method:
+        - `DisplayComment()`: Abstract method to display comment information.
+
+   b. `TextComment` (Concrete Class):
+      - Inherits from `Comment`.
+      - Constructor:
+        - Initializes the `CommenterName` and `CommentText` properties.
+      - Overrides Abstract Method:
+        - `DisplayComment()`: Displays the text comment information.
+
+   c. `Video` (Abstract Class):
+      - Properties:
+        - `Title`: Represents the title of the video.
+        - `Author`: Represents the author of the video.
+        - `LengthSeconds`: Represents the length of the video in seconds.
+        - `comments`: List to store comments related to the video.
+      - Constructor:
+        - Initializes the `Title`, `Author`, and `LengthSeconds` properties.
+      - Abstract Methods:
+        - `AddComment(string commenterName, string commentText)`: Adds a comment to the video.
+        - `GetNumComments()`: Abstract method to get the number of comments.
+        - `DisplayVideoInfo()`: Abstract method to display video information.
+
+   d. `VideoWithTextComments` (Concrete Class):
+      - Inherits from `Video`.
+      - Overrides Abstract Methods:
+        - `AddComment(string commenterName, string commentText)`: Adds a text comment to the video.
+        - `GetNumComments()`: Returns the number of text comments.
+        - `DisplayVideoInfo()`: Displays video information and text comments.
+
+3. Usage (in `Main` Method):
+
+   - Create instances of `VideoWithTextComments`.
+   - Add text comments to each video.
+   - Display information for each video, including the title, author, length, number of comments,
+     and the comments themselves.
+
+4. Execution:
+
+   - Compile and run the program.
+   - The program will create videos, add comments, and display information for each video.
+
+5. Note:
+
+   - The `comments` list in the `Video` class is marked as `protected` to allow access by subclasses.
+
+=======================================================================
+                           CLASS DIAGRAM
+=======================================================================
+
++------------------+
+|     Comment      |
++------------------+
+| - CommenterName  |
+| - CommentText    |
++------------------+
+| + Comment()      |
+| + DisplayComment()|
++------------------+
+        ^
+        |
++------------------+
+|  TextComment     |
++------------------+
+| + TextComment()  |
+| + DisplayComment()|
++------------------+
+
++------------------+
+|      Video       |
++------------------+
+| - Title          |
+| - Author         |
+| - LengthSeconds  |
+| - comments       |
++------------------+
+| + Video()        |
+| + AddComment()   |
+| + GetNumComments()|
+| + DisplayVideoInfo|
++------------------+
+        ^
+        |
++------------------+
+| VideoWithText    |
+|    Comments      |
++------------------+
+| + AddComment()   |
+| + GetNumComments()|
+| + DisplayVideoInfo|
++------------------+
+
+
+Comment is an abstract class representing a generic comment with CommenterName and CommentText properties. 
+It has an abstract method DisplayComment().
+
+TextComment is a concrete class inheriting from Comment and adds functionality to display 
+text comments specifically.
+
+Video is an abstract class representing a video with properties such as 
+Title, Author, LengthSeconds, and a list of comments. It has abstract methods for adding comments, 
+getting the number of comments, and displaying video information.
+
+VideoWithTextComments is a concrete class inheriting from Video and adds 
+functionality to handle text comments specifically.

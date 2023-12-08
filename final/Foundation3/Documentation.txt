@@ -1,0 +1,140 @@
+=======================================================================
+                  Event Management Program Documentation
+=======================================================================
+
+Overview
+This C# program is designed to manage different types of events using a class hierarchy with inheritance. 
+The program defines a base Event class and three derived classes (ConferenceEvent, ConcertEvent, WeddingEvent). 
+Each class encapsulates specific attributes and methods related to its type of event.
+
+Classes
+Address Class
+Represents the address of an event.
+
+Properties
+Street: Street address.
+City: City name.
+State: State or region.
+ZipCode: Postal code.
+
+Methods
+ToString(): Overrides the default ToString() method to provide a formatted string representation of the address.
+
+Event Class
+The base class for all types of events.
+
+Fields
+eventName: Name of the event.
+eventDate: Date of the event.
+eventAddress: Address of the event.
+
+Constructor
+Event(string name, DateTime date, Address address): Initializes the event with a name, date, and address.
+
+Methods
+GetEventInfo(): Returns a formatted string with basic information about the event.
+ConferenceEvent Class
+Derived class for conference events.
+
+Fields
+speaker: Speaker for the conference.
+
+Constructor
+ConferenceEvent(string name, DateTime date, Address address, string speaker): Initializes the conference 
+event with a name, date, address, and speaker.
+
+Methods
+GetConferenceInfo(): Returns a formatted string with information specific to conference events.
+ConcertEvent Class
+Derived class for concert events.
+
+Fields
+artist: Performing artist for the concert.
+
+Constructor
+ConcertEvent(string name, DateTime date, Address address, string artist): Initializes 
+the concert event with a name, date, address, and artist.
+
+Methods
+GetConcertInfo(): Returns a formatted string with information specific to concert events.
+WeddingEvent Class
+Derived class for wedding events.
+
+Fields
+bride: Name of the bride.
+groom: Name of the groom.
+
+Constructor
+WeddingEvent(string name, DateTime date, Address address, string bride, string groom): Initializes the 
+wedding event with a name, date, address, bride, and groom.
+
+Methods
+GetWeddingInfo(): Returns a formatted string with information specific to wedding events.
+
+Program Execution
+The Main() method in the Program class demonstrates the creation of different types of events, setting 
+their values, and calling methods to generate marketing messages. Adjustments can be made to the event 
+details as needed.
+
+=======================================================================
+                 CLASS DIAGRAM
+=======================================================================
+
++---------------------+
+|        Address      |
++---------------------+
+| - Street: string    |
+| - City: string      |
+| - State: string     |
+| - ZipCode: string   |
++---------------------+
+| + ToString(): string|
++---------------------+
+
++---------------------+
+|         Event       |
++---------------------+
+| - eventName: string |
+| - eventDate: DateTime|
+| - eventAddress: Address|
++---------------------+
+| + Event(name: string, date: DateTime, address: Address) |
+| + GetEventInfo(): string |
++---------------------+
+
+           ^
+           |
+           |  <<abstract>>
++------------------------+
+|   ConferenceEvent     |
++------------------------+
+| - speaker: string      |
++------------------------+
+| + ConferenceEvent(name: string, date: DateTime, address: Address, speaker: string) |
+| + GetConferenceInfo(): string |
++------------------------+
+
+           ^
+           |
+           |  <<abstract>>
++------------------------+
+|    ConcertEvent        |
++------------------------+
+| - artist: string       |
++------------------------+
+| + ConcertEvent(name: string, date: DateTime, address: Address, artist: string) |
+| + GetConcertInfo(): string |
++------------------------+
+
+           ^
+           |
+           |  <<abstract>>
++------------------------+
+|    WeddingEvent        |
++------------------------+
+| - bride: string        |
+| - groom: string        |
++------------------------+
+| + WeddingEvent(name: string, date: DateTime, address: Address, bride: string, groom: string) |
+| + GetWeddingInfo(): string |
++------------------------+
